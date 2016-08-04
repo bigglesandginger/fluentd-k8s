@@ -1,0 +1,10 @@
+IMAGE = fluentd-k8s
+TAG = 0.2.5
+
+build:
+	docker build -t better/${IMAGE}:${TAG} .
+	docker tag better/${IMAGE}:${TAG} better/${IMAGE}:latest
+
+push:
+	docker push better/${IMAGE}:${TAG}
+	docker push better/${IMAGE}:latest

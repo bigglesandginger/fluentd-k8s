@@ -1,0 +1,33 @@
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  name: fluentd
+spec:
+  template:
+    metadata:
+      labels:
+        app: fluentd
+    spec:
+      terminationGracePeriodSeconds: 30
+      containers:
+      - name: fluentd
+        image: better/fluentd-k8s
+        env:
+          - name: ES_HOST
+            valueFrom:
+              secretKeyRef:
+                name: es
+                key: host
+          - name: ES_PORT
+            valueFrom:
+              secretKeyRef:
+                name: es
+                key: port
+        volumeMounts:
+        - name: docker
+          mountPath: /var/lib/docker/containers
+          readOnly: true
+      volumes:
+      - name: docker
+        hostPath:
+          path: /var/lib/docker/containers
