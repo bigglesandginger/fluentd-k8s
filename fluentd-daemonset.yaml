@@ -23,7 +23,6 @@ spec:
               secretKeyRef:
                 name: es
                 key: port
-                key: host
           - name: ES_USERNAME
             valueFrom:
               secretKeyRef:
