@@ -29,7 +29,6 @@ spec:
               secretKeyRef:
                 name: es
                 key: username
-                key: host
           - name: ES_PASSWORD
             valueFrom:
               secretKeyRef:
